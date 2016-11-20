@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +16,10 @@
 
 class DatabaseSeeder {
 
-  * run () {
+  * run() {
     // yield Factory.model('App/Model/User').create(5)
   }
 
 }
 
-module.exports = DatabaseSeeder
+module.exports = DatabaseSeeder;

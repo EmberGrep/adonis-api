@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +11,7 @@
 |
 */
 
-const http = require('./bootstrap/http')
-http(function () {
-  use('Event').fire('Http.start')
-})
+const http = require('./bootstrap/http');
+http(() => {
+  use('Event').fire('Http.start');
+});

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /*
 |--------------------------------------------------------------------------
@@ -10,11 +10,11 @@
 |
 */
 
-const app = require('./app')
-const fold = require('adonis-fold')
-const path = require('path')
-const packageFile = path.join(__dirname, '../package.json')
-require('./extend')
+const app = require('./app');
+const fold = require('adonis-fold');
+const path = require('path');
+const packageFile = path.join(__dirname, '../package.json');
+require('./extend');
 
 module.exports = function (callback) {
   fold.Registrar
@@ -29,7 +29,7 @@ module.exports = function (callback) {
       | providers can be referenced with short sweet names.
       |
       */
-      fold.Ioc.aliases(app.aliases)
+      fold.Ioc.aliases(app.aliases);
 
       /*
       |--------------------------------------------------------------------------
@@ -41,9 +41,9 @@ module.exports = function (callback) {
       | to setup autoloading.
       |
       */
-      const Helpers = use('Helpers')
-      const Env = use('Env')
-      Helpers.load(packageFile, fold.Ioc)
+      const Helpers = use('Helpers');
+      const Env = use('Env');
+      Helpers.load(packageFile, fold.Ioc);
 
       /*
       |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ module.exports = function (callback) {
       | events.js file.
       |
       */
-      require('./events')
+      require('./events');
 
       /*
       |--------------------------------------------------------------------------
@@ -65,8 +65,8 @@ module.exports = function (callback) {
       | require defined files for same.
       |
       */
-      use(Helpers.makeNameSpace('Http', 'kernel'))
-      use(Helpers.makeNameSpace('Http', 'routes'))
+      use(Helpers.makeNameSpace('Http', 'kernel'));
+      use(Helpers.makeNameSpace('Http', 'routes'));
 
       /*
       |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ module.exports = function (callback) {
       | autoload it to be used inside the entire application.
       |
       */
-      use(Helpers.databasePath('factory'))
+      use(Helpers.databasePath('factory'));
 
       /*
       |--------------------------------------------------------------------------
@@ -87,11 +87,11 @@ module.exports = function (callback) {
       | We are all set to fire the Http Server and start receiving new requests.
       |
       */
-      const Server = use('Adonis/Src/Server')
-      Server.listen(Env.get('HOST'), Env.get('PORT'))
+      const Server = use('Adonis/Src/Server');
+      Server.listen(Env.get('HOST'), Env.get('PORT'));
       if (typeof (callback) === 'function') {
-        callback()
+        callback();
       }
     })
-    .catch((error) => console.error(error.stack))
-}
+    .catch(error => console.error(error.stack));
+};

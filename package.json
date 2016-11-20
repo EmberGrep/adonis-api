@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x node server.js",
     "start": "node server.js",
-    "lint": "standard"
+    "environment": "cp .env.example .env && node ace key:generate",
+    "migrate": "node ace migration:run --force",
+    "refresh": "node ace migration:refresh --force",
+    "seed": "node ace db:seed --force",
+    "lint": "eslint"
   },
   "author": "",
   "license": "MIT",
@@ -17,22 +21,18 @@
     "adonis-commands": "^2.1.2",
     "adonis-fold": "^3.0.3",
     "adonis-framework": "^3.0.5",
+    "adonis-generators": "^0.6.1",
+    "adonis-jsonapi": "^0.5.4",
     "adonis-lucid": "^3.0.10",
     "adonis-middleware": "^1.0.8",
-    "standard": "^8.4.0",
     "youch": "^1.0.1"
-  },
-  "standard": {
-    "global": [
-      "use",
-      "make"
-    ]
   },
   "autoload": {
     "App": "./app"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0",
-    "standard": "^8.5.0"
+    "eslint": "^3.10.2",
+    "eslint-config-rtablada": "^4.0.0",
+    "nodemon": "^1.11.0"
   }
 }
