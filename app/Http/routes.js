@@ -20,7 +20,7 @@ const Route = use('Route');
 Route.post('/api/users', 'UserController.store');
 
 Route.resource('/api/users', 'UserController')
-  .except(['create', 'edit'])
+  .except(['create', 'store', 'edit'])
   .middleware('auth');
 
 Route.post('/api/token-auth', 'AuthController.store');
