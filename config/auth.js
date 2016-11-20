@@ -33,7 +33,7 @@ module.exports = {
     model: 'App/Model/User',
     scheme: 'session',
     uid: 'email',
-    password: 'password'
+    password: 'password',
   },
 
   /*
@@ -49,7 +49,7 @@ module.exports = {
     model: 'App/Model/User',
     scheme: 'basic',
     uid: 'email',
-    password: 'password'
+    password: 'password',
   },
 
   /*
@@ -67,7 +67,7 @@ module.exports = {
     scheme: 'jwt',
     uid: 'email',
     password: 'password',
-    secret: Config.get('app.appKey')
+    secret: Config.get('app.appKey'),
   },
 
   /*
@@ -85,7 +85,7 @@ module.exports = {
   api: {
     serializer: 'Lucid',
     model: 'App/Model/Token',
-    scheme: 'api'
-  }
+    scheme: 'api',
+  },
 
 };

@@ -19,7 +19,7 @@ module.exports = {
     },
     reportOnly: false,
     setAllHeaders: false,
-    disableAndroid: true
+    disableAndroid: true,
   },
 
   /*
@@ -33,7 +33,7 @@ module.exports = {
   */
   xss: {
     enabled: true,
-    enableOnOldIE: false
+    enableOnOldIE: false,
   },
 
   /*
@@ -81,10 +81,10 @@ module.exports = {
   |
   */
   csrf: {
-    enable: true,
+    enable: false,
     methods: ['POST', 'PUT', 'DELETE'],
     filterUris: [],
-    compareHostAndOrigin: true
-  }
+    compareHostAndOrigin: true,
+  },
 
 };

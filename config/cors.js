@@ -10,7 +10,7 @@ module.exports = {
   | define multiple origins as string.
   |
   */
-  origin: false,
+  origin: true,
 
   /*
   |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ module.exports = {
   | Comma seperated HTTP methods to be allowed.
   |
   */
-  methods: 'GET, PUT, POST',
+  methods: 'GET, PUT, POST, PATCH, DELETE',
 
   /*
   |--------------------------------------------------------------------------
@@ -61,5 +61,5 @@ module.exports = {
   | Define Access-Control-Allow-Max-Age
   |
   */
-  maxAge: 90
+  maxAge: 90,
 };

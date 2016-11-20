@@ -28,7 +28,7 @@ module.exports = {
     | aes-128-cbc requires 16 characters long string
     |
     */
-    algorithm: 'aes-256-cbc'
+    algorithm: 'aes-256-cbc',
   },
 
   http: {
@@ -93,7 +93,7 @@ module.exports = {
     | in request url.
     |
     */
-    jsonpCallback: 'callback'
+    jsonpCallback: 'callback',
   },
 
   views: {
@@ -117,7 +117,7 @@ module.exports = {
     | IoC container. Setting it to false will disable this feature.
     |
     */
-    injectServices: true
+    injectServices: true,
   },
 
   static: {
@@ -156,7 +156,7 @@ module.exports = {
     | that exists will be served. Example: ['html', 'htm'].
     |
     */
-    extensions: false
+    extensions: false,
   },
 
   locales: {
@@ -193,6 +193,6 @@ module.exports = {
     | Fallback locale to be used when actual locale is not supported.
     |
     */
-    fallbackLocale: 'en'
-  }
+    fallbackLocale: 'en',
+  },
 };

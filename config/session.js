@@ -116,7 +116,7 @@ module.exports = {
   |
   */
   file: {
-    directory: 'sessions'
-  }
+    directory: 'sessions',
+  },
 
 };

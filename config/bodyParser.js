@@ -64,7 +64,7 @@ module.exports = {
     | 'a.b=c' will be parsed as {a: {b: 'c'}}
     |
     */
-    allowDots: false
+    allowDots: false,
   },
   uploads: {
 
@@ -100,6 +100,6 @@ module.exports = {
     | the maximum limit.
     |
     */
-    maxSize: '2mb'
-  }
+    maxSize: '2mb',
+  },
 };

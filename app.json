@@ -1,0 +1,19 @@
+{
+  "name": "Starter Api",
+  "description": "A simple app for working with node APIs and Servers.",
+  "repository": "https://github.com/rtablada/starter-api",
+  "addons": ["heroku-postgresql"],
+  "scripts": {
+    "postdeploy": "npm run migration && npm run seed"
+  },
+  "env": {
+    "APP_KEY": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "DB_CONNECTION": {
+      "description": "The database type to connect to.",
+      "value": "pg"
+    }
+  }
+}
