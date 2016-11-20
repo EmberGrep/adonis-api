@@ -24,3 +24,5 @@ Route.resource('/api/users', 'UserController')
   .middleware('auth');
 
 Route.post('/api/token-auth', 'AuthController.store');
+Route.resource('/api/slides', 'SlideController').except(['create', 'edit']);
+Route.resource('/api/reasons', 'ReasonController').except(['create', 'edit']);
