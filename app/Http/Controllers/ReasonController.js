@@ -1,7 +1,7 @@
 'use strict';
 
 const Reason = use('App/Model/Reason');
-const attributes = ['title'];
+const attributes = ['title', 'number'];
 
 class ReasonController {
 
