@@ -1,35 +1,132 @@
-# AdonisJs Application
+# AdonisJs JSON API Starter Kit
 
-This repo is the pre-configured project structure to be used for creating ambitious web servers using AdonisJs.
+This is a base project for building JSON APIs with Adonis.js.
 
-> Make sure to star the official [framework repo](https://github.com/adonisjs/adonis-framework) or [tweet on twitter](https://twitter.com/intent/tweet?url=http://adonisjs.com&text=I%20am%20using%20AdonisJs,%20a%20practical%20MVC%20framework%20for%20nodejs&hashtags=nodejs,adonisframework) :wave:
+The starter kit has a few modifications beyond the normal base project to make API development faster and easier.
 
-## Story
+* DB Configuration for Heroku Postgres
+* Adonis JSON API Installed
+* Adonis Generators Installed
+* Default to using JWT Auth
 
-One day a :boy: wanted to write a web application to slowly turn it into a business and make some :moneybag: for better living. Being a Javascript lover, he decided to go with Node.js. 
+This starter kit also comes with a few default routes and controllers to make secure registration and authentication easier.
 
-Hosting Node.js applications are cheap and offers lots of mordern programming concepts to build realtime data rich applications.
+## `/api/users` - POST
 
-He was so excited and full of energy to build this application and share it with the world. But soon his dreams started struggling with the amount of decisions he has to make, just to build an MVP of his idea. These decisions were not even related to the business and was about.
+This is a JSON API resource for creating users.
+For example the following request body would create a new user:
 
-1. How should I structure my application?
-2. Why do I need to download 20 modules just to start an HTTP server, parse request body and upload files.
-3. How should I manage the authentication on website, and expose public API for others to interact with the data?
-4. What do I need to do to secure my application from web attacks and how to handle CORS?
-5. Why do I have ton of `require` statements everywhere?
-6. How the heck should I test my code? I am having hard time mocking dependencies.
-7. **WHY THE :fish:** there are no standards to write some code. Hell I am not going to write this application and going for a walk.
+```json
+{
+  "data": {
+    "attributes": {
+      "email": "admin@admin.com",
+      "password": "password"
+    }
+  }
+}
+```
 
+This endpoint will store the new user and hash the user's password.
 
-## Not Anymore
+## `/api/users` - GET
 
-This is so frustating. Node.js is a beautiful language but all of the above questions have never been answered together. We all love writing small concise modules but business are not created by downloading 20 modules.
+This JSON API endpoint allows you to see all registered users in the application.
+Requests to this endpoint need to be authenticated using an API token from the `/api/token-auth` endpoint.
 
-Developers needs productive tools, so that they can focus on what matters, and not on downloading & finding the best ways to combine these small modules. 
+Here is an example response from this endpoint:
 
-## AdonisJs
+```json
+{
+  "data": [
+    {
+      "type": "users",
+      "id": "1",
+      "attributes": {
+        "email": "admin@admin.com",
+        "password": "password"
+      }
+    }
+  ]
+}
+```
 
-AdonisJs is a beautiful framework with pre-configured answers to all of your questions. We not only created this framework, but validated the features of framework with realtime problems and still improving every bit, so that you have to write less and structured code.
+## `/api/users/:user_id` - GET
 
-This time a :boy: will write his ambitious application and will set the world on :fire:``. Don't hesitate to work on your ideas and we promise to improve the framework every :sunny: and :first_quarter_moon_with_face: and YESSSS do not forget to star us on [:octocat:](https://github.com/adonisjs/adonis-framework)
+This JSON API endpoint allows you to see details for a registered user based on `user_id`.
+Requests to this endpoint need to be authenticated using an API token from the `/api/token-auth` endpoint.
 
+Here is an example response from this endpoint - `/api/users/1`
+
+```json
+{
+  "data": {
+    "type": "users",
+    "id": "1",
+    "attributes": {
+      "email": "admin@admin.com",
+      "password": "password"
+    }
+  }
+}
+```
+
+## `/api/users/:user_id` - PATCH
+
+This JSON API endpoint allows you to update attributes for a registered user based on `user_id`.
+Requests to this endpoint need to be authenticated using an API token from the `/api/token-auth` endpoint.
+
+Here is an example request to this endpoint - `/api/users/1`:
+
+Request:
+```json
+{
+  "data": {
+    "type": "users",
+    "id": "1",
+    "attributes": {
+      "email": "general@admin.com"
+    }
+  }
+}
+```
+
+Response:
+```json
+{
+  "data": {
+    "type": "users",
+    "id": "1",
+    "attributes": {
+      "email": "admin@admin.com",
+      "password": "password"
+    }
+  }
+}
+```
+
+## `/api/users/:user_id` - PATCH
+
+This JSON API endpoint allows you to remove a registered user based on `user_id`.
+Requests to this endpoint need to be authenticated using an API token from the `/api/token-auth` endpoint.
+
+## `/api/token-auth` - POST
+
+This route allows users to authentcate and get back a JWT for the authorized user.
+
+The following is an example request:
+
+Request Body:
+```json
+{
+  "username": "admin@example.com",
+  "password": "password"
+}
+```
+
+Response Body:
+```json
+{
+  "token": "someLongJWTGoesHERE"
+}
+```

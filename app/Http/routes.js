@@ -20,9 +20,7 @@ const Route = use('Route');
 Route.post('/api/users', 'UserController.store');
 
 Route.resource('/api/users', 'UserController')
-  .except(['create', 'store', 'edit'])
+  .only(['index', 'show', 'update', 'destroy'])
   .middleware('auth');
 
-Route.post('/api/token-auth', 'AuthController.store');
-Route.resource('/api/slides', 'SlideController').except(['create', 'edit']);
-Route.resource('/api/reasons', 'ReasonController').except(['create', 'edit']);
+Route.post('/api/token-auth', 'SessionController.store');
