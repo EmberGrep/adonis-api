@@ -10,7 +10,8 @@
     "refresh": "node ace migration:refresh --force",
     "seed": "node ace db:seed --force",
     "lint": "eslint",
-    "test": "ENV_PATH=.env.test cucumber.js tests -r tests/steps"
+    "test": "ENV_PATH=.env.test cucumber.js tests -r tests/steps",
+    "tdd": "nodemon --watch app --watch bootstrap --watch config --watch .env.testing --watch tests -x npm run test"
   },
   "author": "",
   "license": "MIT",

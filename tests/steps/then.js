@@ -11,9 +11,6 @@ module.exports = function () {
   });
 
   this.Then('I get JSON API Error', function* () {
-    console.log('\n\n\n-----------------------------------\n\n\n');
-    console.log(this.responseText);
-    console.log('\n\n\n-----------------------------------\n\n\n');
     assert.notOk(this.response.ok,
       `The response should send an error status, but sent "${this.response.status}"`);
 
@@ -28,12 +25,12 @@ module.exports = function () {
   });
 
   this.Then('with error title {message:stringInDoubleQuotes}', function* (message) {
-    assert.propertyVal(this.responseJson[0], 'title', message,
-        `Expected the error title to say "${message}", but got "${this.responseJson[0].title}"`);
+    assert.propertyVal(this.responseJson.errors[0], 'title', message,
+        `Expected the error title to say "${message}", but got "${this.responseJson.errors[0].title}"`);
   });
 
   this.Then('with error detail {message:stringInDoubleQuotes}', function* (message) {
-    assert.propertyVal(this.responseJson[0], 'detail', message,
-        `Expected the error detail to say "${message}", but got "${this.responseJson[0].detail}"`);
+    assert.propertyVal(this.responseJson.errors[0], 'detail', message,
+        `Expected the error detail to say "${message}", but got "${this.responseJson.errors[0].detail}"`);
   });
 };

@@ -30,9 +30,6 @@ Http.handleError = function* (error, request, response) {
   //        console.log('Error handled properly');
   //      });
   // }
-  console.log('\n\n\n-----------------------------------\n\n\n');
-  console.log('ERROR', error);
-  console.log('\n\n\n-----------------------------------\n\n\n');
 
   response.jsonApiError(error);
 };
