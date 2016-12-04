@@ -10,7 +10,9 @@
     "refresh": "node ace migration:refresh --force",
     "seed": "node ace db:seed --force",
     "lint": "eslint",
-    "test": "cucumber.js tests -r tests/steps"
+    "test": "ENV_PATH=.env.test cucumber.js tests -r tests/steps",
+    "pretest": "ENV_PATH=.env.test ./ace migration:refresh",
+    "posttest": "ENV_PATH=.env.test ./ace migration:rollback"
   },
   "author": "",
   "license": "MIT",

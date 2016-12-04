@@ -49,13 +49,9 @@ module.exports = function () {
           },
         }),
       });
-      const extra = this.response.clone();
 
-      this.responseText = yield extra.text();
       this.responseJson = yield this.response.json();
     } catch (e) {
-      console.log(e);
-
       this.responseError = e;
     }
   });
