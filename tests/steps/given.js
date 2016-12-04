@@ -1,16 +1,13 @@
 const bootstrap = require('./support/bootstrap');
-const ace = require('adonis-ace');
 
 module.exports = function () {
-  this.Given(/^A Fresh App$/, function (callback) {
-    bootstrap((server) => {
-      server.listen(process.env.HOST, process.env.PORT);
+  this.Given(/^A Fresh App$/, function* () {
+    const server = yield bootstrap();
 
-      this.server = server;
-      this.server.host = `http://${process.env.HOST}:${process.env.PORT}`;
+    server.listen(process.env.HOST, process.env.PORT);
 
-      callback();
-    });
+    this.server = server;
+    this.server.host = `http://${process.env.HOST}:${process.env.PORT}`;
   });
 
   this.Given('Seed the {table:stringInDoubleQuotes} table with data', function* (table, data) {
@@ -19,9 +16,9 @@ module.exports = function () {
     yield Database.table(table).insert(data.hashes());
   });
 
-  this.Before(function* () {
-    ace.call('migration:refresh');
-  });
+  // this.Before(function* () {
+  //   ace.call('migration:refresh');
+  // });
 
   this.After(function () {
     if (this.server) {

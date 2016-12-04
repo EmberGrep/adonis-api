@@ -14,75 +14,75 @@ const path = require('path');
 const packageFile = path.join(__dirname, '../../../package.json');
 require('../../../bootstrap/extend');
 
-module.exports = function (callback) {
-  fold.Registrar
-    .register(app.providers.concat(app.aceProviders))
-    .then(() => {
-      /*
-      |--------------------------------------------------------------------------
-      | Register Aliases
-      |--------------------------------------------------------------------------
-      |
-      | After registering all the providers, we need to setup aliases so that
-      | providers can be referenced with short sweet names.
-      |
-      */
-      fold.Ioc.aliases(app.aliases);
+module.exports = function* () {
+  yield fold.Registrar
+    .register(app.providers.concat(app.aceProviders));
 
-      /*
-      |--------------------------------------------------------------------------
-      | Register Package File
-      |--------------------------------------------------------------------------
-      |
-      | Adonis application package.json file has the reference to the autoload
-      | directory. Here we register the package file with the Helpers provider
-      | to setup autoloading.
-      |
-      */
-      const Helpers = use('Helpers');
-      Helpers.load(packageFile, fold.Ioc);
+  /*
+  |--------------------------------------------------------------------------
+  | Register Aliases
+  |--------------------------------------------------------------------------
+  |
+  | After registering all the providers, we need to setup aliases so that
+  | providers can be referenced with short sweet names.
+  |
+  */
+  fold.Ioc.aliases(app.aliases);
 
-      /*
-      |--------------------------------------------------------------------------
-      | Register Events
-      |--------------------------------------------------------------------------
-      |
-      | Here we require the event.js file to register events defined inside
-      | events.js file.
-      |
-      */
-      require('../../../bootstrap/events');
+  /*
+  |--------------------------------------------------------------------------
+  | Register Package File
+  |--------------------------------------------------------------------------
+  |
+  | Adonis application package.json file has the reference to the autoload
+  | directory. Here we register the package file with the Helpers provider
+  | to setup autoloading.
+  |
+  */
+  const Helpers = use('Helpers');
+  Helpers.load(packageFile, fold.Ioc);
 
-      /*
-      |--------------------------------------------------------------------------
-      | Load Middleware And Routes
-      |--------------------------------------------------------------------------
-      |
-      | Middleware and Routes are required to oil up your HTTP server. Here we
-      | require defined files for same.
-      |
-      */
-      use(Helpers.makeNameSpace('Http', 'kernel'));
-      use(Helpers.makeNameSpace('Http', 'routes'));
+  /*
+  |--------------------------------------------------------------------------
+  | Register Events
+  |--------------------------------------------------------------------------
+  |
+  | Here we require the event.js file to register events defined inside
+  | events.js file.
+  |
+  */
+  require('../../../bootstrap/events');
 
-      /*
-      |--------------------------------------------------------------------------
-      | Start Http Server
-      |--------------------------------------------------------------------------
-      |
-      | We are all set to fire the Http Server and start receiving new requests.
-      |
-      */
-      const Server = use('Adonis/Src/Server');
-      callback(Server);
+  /*
+  |--------------------------------------------------------------------------
+  | Load Middleware And Routes
+  |--------------------------------------------------------------------------
+  |
+  | Middleware and Routes are required to oil up your HTTP server. Here we
+  | require defined files for same.
+  |
+  */
+  use(Helpers.makeNameSpace('Http', 'kernel'));
+  use(Helpers.makeNameSpace('Http', 'routes'));
 
-      /*
-      |--------------------------------------------------------------------------
-      | Firing Start Event
-      |--------------------------------------------------------------------------
-      */
-      const Event = use('Event');
-      Event.fire('Http.start');
-    })
-    .catch(error => console.error(error.stack));
+  /*
+  |--------------------------------------------------------------------------
+  | Start Http Server
+  |--------------------------------------------------------------------------
+  |
+  | We are all set to fire the Http Server and start receiving new requests.
+  |
+  */
+  const Server = use('Adonis/Src/Server');
+
+  /*
+  |--------------------------------------------------------------------------
+  | Firing Start Event
+  |--------------------------------------------------------------------------
+  */
+  const Event = use('Event');
+  Event.fire('Http.start');
+
+  return Server;
+    // .catch(error => console.error(error.stack));
 };
