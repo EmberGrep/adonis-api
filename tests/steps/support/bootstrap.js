@@ -73,7 +73,7 @@ module.exports = function* () {
   | We are all set to fire the Http Server and start receiving new requests.
   |
   */
-  const Server = use('Adonis/Src/Server');
+  const server = use('Adonis/Src/Server');
 
   /*
   |--------------------------------------------------------------------------
@@ -83,6 +83,17 @@ module.exports = function* () {
   const Event = use('Event');
   Event.fire('Http.start');
 
-  return Server;
+  const Database = use('Database');
+
+  /*
+  |--------------------------------------------------------------------------
+  | Setup Ace Commands
+  |--------------------------------------------------------------------------
+  |
+  */
+  const ace = require('adonis-ace');
+  ace.register(app.commands);
+
+  return { server, ace, Database, Event, Helpers, app };
     // .catch(error => console.error(error.stack));
 };

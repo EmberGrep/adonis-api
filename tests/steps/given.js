@@ -2,11 +2,9 @@ const bootstrap = require('./support/bootstrap');
 
 module.exports = function () {
   this.Given(/^A Fresh App$/, function* () {
-    const server = yield bootstrap();
+    yield this.ace.call('migration:refresh', [], {});
 
-    server.listen(process.env.HOST, process.env.PORT);
-
-    this.server = server;
+    this.server.listen(process.env.HOST, process.env.PORT);
     this.server.host = `http://${process.env.HOST}:${process.env.PORT}`;
   });
 
@@ -16,9 +14,16 @@ module.exports = function () {
     yield Database.table(table).insert(data.hashes());
   });
 
-  // this.Before(function* () {
-  //   ace.call('migration:refresh');
-  // });
+  this.Before(function* () {
+    const { server, ace, Database, Event, Helpers, app } = yield bootstrap();
+
+    this.app = app;
+    this.server = server;
+    this.ace = ace;
+    this.Database = Database;
+    this.Event = Event;
+    this.Helpers = Helpers;
+  });
 
   this.After(function () {
     if (this.server) {
