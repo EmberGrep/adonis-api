@@ -34,11 +34,13 @@
     "App": "./app"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "cucumber": "^2.0.0-rc.1",
     "dot-object": "^1.5.4",
     "eslint": "^3.10.2",
     "eslint-config-rtablada": "^4.0.0",
     "faker": "^3.1.0",
+    "mocha": "^3.2.0",
     "node-fetch": "^1.6.3",
     "nodemon": "^1.11.0"
   }

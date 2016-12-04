@@ -13,11 +13,16 @@ module.exports = function () {
   });
 
   this.When('{method:stringInDoubleQuotes} to {url:stringInDoubleQuotes}', function* (method, url) {
-    this.request = Object.assign({}, this.request, { method, url });
+    this.request.method = method;
+    this.request.url = url;
   });
 
   this.When('have type {type:stringInDoubleQuotes}', function* (type) {
-    this.request = Object.assign({}, this.request, { type });
+    this.request.type = type;
+  });
+
+  this.When('have attribute {key:stringInDoubleQuotes} with value {value:stringInDoubleQuotes}', function* (key, value) {
+    this.request.attributes[key] = value;
   });
 
   this.When('have faker attribute {key:stringInDoubleQuotes} from {fakerType:stringInDoubleQuotes}', function* (key, fakerType) {
@@ -28,19 +33,26 @@ module.exports = function () {
   });
 
   this.When('send request', function* () {
-    // Write code here that turns the phrase above into concrete actions
-    this.response = yield fetch(`${this.server.host}${this.request.url}`, {
-      headers: {
-        'Content-Type': 'application/vnd.api+json',
-        Accept: 'application/json',
-      },
-      method: this.request.method,
-      body: JSON.stringify({
-        type: this.request.type,
-        attributes: this.request.attributes,
-      }),
-    });
+    try {
+      console.log(this.server.host + this.request.url);
+      // Write code here that turns the phrase above into concrete actions
+      this.response = yield fetch(`${this.server.host}${this.request.url}`, {
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          Accept: 'application/json',
+        },
+        method: this.request.method,
+        body: JSON.stringify({
+          data: {
+            type: this.request.type,
+            attributes: this.request.attributes,
+          },
+        }),
+      });
 
-    this.responseJson = yield this.response.json();
+      this.responseJson = yield this.response.json();
+    } catch (e) {
+      this.responseError = e;
+    }
   });
 };
