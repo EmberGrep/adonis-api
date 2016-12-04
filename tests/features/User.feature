@@ -27,4 +27,4 @@ Feature: User Resource
     And send request
     Then I get JSON API Error
     And with error title "Invalid Attribute"
-    And with error detail "That email has already been used for an account"
+    And with error detail "That email has already been used by another account"

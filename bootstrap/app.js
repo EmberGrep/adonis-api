@@ -30,6 +30,8 @@ const providers = [
   'adonis-middleware/providers/AppMiddlewareProvider',
   'adonis-auth/providers/AuthManagerProvider',
   'adonis-jsonapi/providers/JsonApiProvider',
+
+  'adonis-validation-provider/providers/ValidatorProvider',
 ];
 
 /*
@@ -77,6 +79,8 @@ const aliases = {
   Route: 'Adonis/Src/Route',
   Schema: 'Adonis/Src/Schema',
   View: 'Adonis/Src/View',
+
+  Validator: 'Adonis/Addons/Validator',
 };
 
 /*

@@ -175,6 +175,12 @@ adonis-middleware@^1.0.8:
     node-guard "^1.0.0"
     node-uuid "^1.4.7"
 
+adonis-validation-provider:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/adonis-validation-provider/-/adonis-validation-provider-3.0.4.tgz#1e06aef2b5904f7c8ceb1c2717a9190321d07ee4"
+  dependencies:
+    indicative "^2.2.1"
+
 ajv-keywords@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.1.1.tgz#02550bc605a3e576041565628af972e06c549d50"
@@ -266,7 +272,7 @@ arrify@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
-asap@^2.0.3:
+asap@^2.0.0, asap@^2.0.3:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.5.tgz#522765b50c3510490e52d7dcfe085ef9ba96958f"
 
@@ -1672,6 +1678,16 @@ indent-string@^2.1.0:
   dependencies:
     repeating "^2.0.0"
 
+indicative@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/indicative/-/indicative-2.2.1.tgz#2d007aef269c0ca6bf136c5577f0ace4361fb4de"
+  dependencies:
+    inflect "^0.3.0"
+    lodash "^4.12.0"
+    moment "^2.13.0"
+    pope "^1.0.0"
+    q "^2.0.3"
+
 infinity-agent@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/infinity-agent/-/infinity-agent-2.0.3.tgz#45e0e2ff7a9eb030b27d62b74b3744b7a7ac4216"
@@ -2219,7 +2235,7 @@ lodash@^3.10.1, lodash@^3.3.1, lodash@^3.9.1, lodash@^3.9.3:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.14.1, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.12.0, lodash@^4.14.0, lodash@^4.14.1, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.0, lodash@^4.6.1:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
 
@@ -2338,6 +2354,10 @@ mocha:
 moment@^2.11.2:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
+
+moment@^2.13.0:
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
 mongodb-core@2.0.13:
   version "2.0.13"
@@ -2810,6 +2830,16 @@ pool2@^1.1.0:
     hashmap "^2.0.1"
     simple-backoff "^1.0.0"
 
+pop-iterate@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/pop-iterate/-/pop-iterate-1.0.1.tgz#ceacfdab4abf353d7a0f2aaa2c1fc7b3f9413ba3"
+
+pope@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/pope/-/pope-1.0.0.tgz#a1393acc70dd09fddc2fe8a3e27483663c821480"
+  dependencies:
+    npmlog "^2.0.0"
+
 postgres-array@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/postgres-array/-/postgres-array-1.0.0.tgz#48c2e82935b178bf805e0dff689d137eec2bfe6b"
@@ -2872,6 +2902,14 @@ punycode@^1.4.1:
 q@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.4.1.tgz#55705bcd93c5f3673530c2c2cbc0c2b3addc286e"
+
+q@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/q/-/q-2.0.3.tgz#75b8db0255a1a5af82f58c3f3aaa1efec7d0d134"
+  dependencies:
+    asap "^2.0.0"
+    pop-iterate "^1.0.1"
+    weak-map "^1.0.5"
 
 qs@^5.2.0:
   version "5.2.1"
@@ -3694,6 +3732,10 @@ verror@1.3.6:
   resolved "https://registry.yarnpkg.com/verror/-/verror-1.3.6.tgz#cff5df12946d297d2baaefaa2689e25be01c005c"
   dependencies:
     extsprintf "1.0.2"
+
+weak-map@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/weak-map/-/weak-map-1.0.5.tgz#79691584d98607f5070bd3b70a40e6bb22e401eb"
 
 which@^1.2.10:
   version "1.2.12"

@@ -1,10 +1,24 @@
 'use strict';
 
 const User = use('App/Model/User');
+
 const Hash = use('Hash');
 const attributes = ['email', 'password'];
 
 class UserController {
+
+  get createRules() {
+    return {
+      email: 'required|email|unique:users',
+      password: 'required',
+    };
+  }
+
+  get createMessages() {
+    return {
+      'email.unique': 'That email has already been used by another account',
+    };
+  }
 
   * index(request, response) {
     const users = yield User.with().fetch();
@@ -14,6 +28,9 @@ class UserController {
 
   * store(request, response) {
     const input = request.jsonApi.getAttributesSnakeCase(attributes);
+
+    yield request.jsonApi.assertValid(input, this.createRules, this.createMessages);
+
     input.password = yield Hash.make(input.password);
     const foreignKeys = {
     };
