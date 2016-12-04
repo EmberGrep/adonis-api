@@ -15,21 +15,21 @@ Http.handleError = function* (error, request, response) {
   /**
    * DEVELOPMENT REPORTER
    */
-  // if (Env.get('NODE_ENV') === 'development') {
-  //   return (new Ouch())
-  //      .pushHandler((new Ouch.handlers.JsonResponseHandler(
-  //            /* handle errors from ajax and json request only*/false,
-  //            /* return formatted trace information along with error response*/false,
-  //            false
-  //        )))
-  //      // .pushHandler(new Ouch.handlers.PrettyPageHandler())
-  //      .handleException(error, request.request, response.response, (output) => {
-  //        const status = error.status || 500;
-  //
-  //        response.status(status).send(JSON.parse(output));
-  //        console.log('Error handled properly');
-  //      });
-  // }
+  if (Env.get('NODE_ENV') === 'development') {
+    return (new Ouch())
+       .pushHandler((new Ouch.handlers.JsonResponseHandler(
+             /* handle errors from ajax and json request only*/false,
+             /* return formatted trace information along with error response*/false,
+             false
+         )))
+       // .pushHandler(new Ouch.handlers.PrettyPageHandler())
+       .handleException(error, request.request, response.response, (output) => {
+         const status = error.status || 500;
+
+         response.status(status).send(JSON.parse(output));
+         console.log('Error handled properly');
+       });
+  }
 
   response.jsonApiError(error);
 };
