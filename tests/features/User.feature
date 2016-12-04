@@ -7,7 +7,7 @@ Feature: User Resource
     And have type "users"
     And have faker attribute "email" from "internet.email"
     And have faker attribute "password" from "internet.password"
-    And have faker attribute "password_confirmation" from "internet.password"
+    And have attribute "password-confirmation" clone value of attribute "password"
     And send request
     Then I get JSON API Result
     And with attribute "email" matching request attribute "email"
@@ -23,7 +23,7 @@ Feature: User Resource
     And have type "users"
     And have attribute "email" with value "example@example.com"
     And have faker attribute "password" from "internet.password"
-    And have faker attribute "password_confirmation" from "internet.password"
+    And have attribute "password-confirmation" clone value of attribute "password"
     And send request
     Then I get JSON API Error
     And with error title "Invalid Attribute"

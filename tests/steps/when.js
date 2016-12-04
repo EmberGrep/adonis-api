@@ -25,6 +25,10 @@ module.exports = function () {
     this.request.attributes[key] = value;
   });
 
+  this.When('have attribute {key:stringInDoubleQuotes} clone value of attribute {cloneKey:stringInDoubleQuotes}', function* (key, cloneKey) {
+    this.request.attributes[key] = this.request.attributes[cloneKey];
+  });
+
   this.When('have faker attribute {key:stringInDoubleQuotes} from {fakerType:stringInDoubleQuotes}', function* (key, fakerType) {
     const fake = dot.pick(fakerType, faker);
     const value = fake();

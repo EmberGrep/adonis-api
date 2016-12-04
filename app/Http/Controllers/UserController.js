@@ -3,14 +3,14 @@
 const User = use('App/Model/User');
 
 const Hash = use('Hash');
-const attributes = ['email', 'password'];
+const attributes = ['email', 'password', 'password-confirmation'];
 
 class UserController {
 
   get createRules() {
     return {
       email: 'required|email|unique:users',
-      password: 'required',
+      password: 'required|confirmed',
     };
   }
 
