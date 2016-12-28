@@ -1,11 +1,21 @@
 const bootstrap = require('./support/bootstrap');
 
+function sleep(wait) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, wait);
+  });
+}
+
 module.exports = function () {
   this.Given(/^A Fresh App$/, function* () {
     yield this.ace.call('migration:refresh', [], {});
 
     this.server.listen(process.env.HOST, process.env.PORT);
     this.server.host = `http://${process.env.HOST}:${process.env.PORT}`;
+
+    yield sleep(50);
   });
 
   this.Given('Seed the {table:stringInDoubleQuotes} table with data', function* (table, data) {
