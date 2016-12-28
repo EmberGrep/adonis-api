@@ -1,7 +1,8 @@
 'use strict';
 
 const Env = use('Env');
-const Helpers = use('Helpers');
+
+console.log(Env.get('DB_DATABASE'));
 
 module.exports = {
 
