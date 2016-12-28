@@ -12,3 +12,5 @@ Feature: Free Lessons
     And send request
     Then I get a JSON API Collection Result
     And the "1st" item has an attribute "title" with the value "Foo"
+    And the "1st" item has an attribute "description" with the value "Yo"
+    And the "1st" item has an attribute "position" with the value 1

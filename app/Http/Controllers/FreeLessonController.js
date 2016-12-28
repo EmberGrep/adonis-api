@@ -1,18 +1,13 @@
 'use strict';
 
+const Lesson = use('App/Model/Lesson');
+
 class FreeLessonController {
 
   * index(request, response) {
-    const data = [
-      {
-        type: 'free-lessons',
-        attributes: {
-          title: 'Foo',
-        },
-      },
-    ];
+    const data = yield Lesson.all();
 
-    response.json({ data });
+    response.jsonApi('FreeLesson', data);
   }
 
 }

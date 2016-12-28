@@ -37,6 +37,15 @@ module.exports = function () {
     assert.deepPropertyVal(this.responseJson.data[position].attributes, key, value);
   });
 
+  this.Then('the {positionish:stringInDoubleQuotes} item has an attribute {key:stringInDoubleQuotes} with the value {value:int}', function* (positionish, key, value) {
+    const position = numeral(positionish).value() - 1;
+
+    assert.isObject(this.responseJson.data[position],
+      `The response should have an object in the "${positionish}" place of the "data" collection.`);
+
+    assert.deepPropertyVal(this.responseJson.data[position].attributes, key, value);
+  });
+
   this.Then('I get JSON API Error', function* () {
     assert.notOk(this.response.ok,
       `The response should send an error status, but sent "${this.response.status}"`);
