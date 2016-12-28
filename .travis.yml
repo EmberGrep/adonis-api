@@ -5,9 +5,25 @@ node_js:
 
 sudo: false
 
+addons:
+  postgresql: "9.3"
+
+services:
+  - postgresql
+
+env:
+  global:
+    - DB_HOST=127.0.0.1
+    - DB_DATABASE=travis_ci_test
+    - DB_USERNAME=postgres
+
 cache:
+  yarn: true
   directories:
     - node_modules
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 
 before_install:
   - npm config set spin false
