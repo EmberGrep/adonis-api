@@ -17,7 +17,7 @@
 
 const Route = use('Route');
 
-Route.post('/api/users', 'UserController.store');
+Route.post('/api/register', 'UserController.store');
 
 Route.resource('/api/users', 'UserController')
   .only(['index', 'show', 'update', 'destroy'])

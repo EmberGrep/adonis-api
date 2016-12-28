@@ -3,7 +3,7 @@ Feature: User Resource
   Scenario: Create a new user
     Given A Fresh App
     When I setup a JSON API Request
-    And "POST" to "/api/users"
+    And "POST" to "/api/register"
     And have type "users"
     And have faker attribute "email" from "internet.email"
     And have faker attribute "password" from "internet.password"
@@ -19,7 +19,7 @@ Feature: User Resource
       | email                  | password |
       | example@example.com    | 123456   |
     When I setup a JSON API Request
-    And "POST" to "/api/users"
+    And "POST" to "/api/register"
     And have type "users"
     And have attribute "email" with value "example@example.com"
     And have faker attribute "password" from "internet.password"
