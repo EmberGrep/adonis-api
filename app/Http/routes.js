@@ -19,8 +19,6 @@ const Route = use('Route');
 
 Route.post('/api/register', 'UserController.store');
 
-Route.resource('/api/users', 'UserController')
-  .only(['index', 'show', 'update', 'destroy'])
-  .middleware('auth');
-
 Route.post('/api/token-auth', 'SessionController.store');
+
+Route.resource('/api/free-lessons', 'FreeLessonController');

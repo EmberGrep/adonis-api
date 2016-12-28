@@ -38,9 +38,9 @@ module.exports = function () {
 
   this.When('send request', function* () {
     try {
-      console.log(this.server.host + this.request.url);
-      // Write code here that turns the phrase above into concrete actions
-      this.response = yield fetch(`${this.server.host}${this.request.url}`, {
+      console.log(`SENDING: ${this.request.method} - ${this.server.host}${this.request.url}`);
+
+      const options = {
         headers: {
           'Content-Type': 'application/vnd.api+json',
           Accept: 'application/json',
@@ -52,7 +52,13 @@ module.exports = function () {
             attributes: this.request.attributes,
           },
         }),
-      });
+      };
+
+      if (this.request.method === 'GET') {
+        delete options.body;
+      }
+
+      this.response = yield fetch(`${this.server.host}${this.request.url}`, options);
       const extra = this.response.clone();
 
       this.responseText = yield extra.text();
