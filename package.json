@@ -11,7 +11,8 @@
     "seed": "node ace db:seed --force",
     "lint": "eslint",
     "test": "ENV_PATH=.env.test cucumber.js tests -r tests/steps",
-    "tdd": "nodemon --watch app --watch bootstrap --watch config --watch .env.testing --watch tests -x npm run test"
+    "tdd": "nodemon --watch app --watch bootstrap --watch config --watch .env.testing --watch tests -x npm run test",
+    "test:db": "createuser embergrep_testing && createdb embergrep_testing -O embergrep_testing"
   },
   "author": "",
   "license": "MIT",

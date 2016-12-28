@@ -14,53 +14,16 @@ module.exports = {
   | interacting with SQL databases.
   |
   */
-  connection: Env.get('DB_CONNECTION', 'sqlite'),
-
-  /*
-  |--------------------------------------------------------------------------
-  | Sqlite
-  |--------------------------------------------------------------------------
-  |
-  | Sqlite is a flat file database and can be good choice under development
-  | environment.
-  |
-  | npm i --save sqlite3
-  |
-  */
-  sqlite: {
-    client: 'sqlite3',
-    connection: {
-      filename: Helpers.databasePath('development.sqlite'),
-    },
-    useNullAsDefault: true,
-  },
+  connection: Env.get('DB_CONNECTION', 'pg'),
 
   testing: {
-    client: 'sqlite3',
-    connection: {
-      filename: Helpers.databasePath('testing.sqlite'),
-    },
-    useNullAsDefault: true,
-  },
-
-  /*
-  |--------------------------------------------------------------------------
-  | Mysql
-  |--------------------------------------------------------------------------
-  |
-  | Here we define connection settings for Mysql database.
-  |
-  | npm i --save mysql
-  |
-  */
-  mysql: {
-    client: 'mysql',
-    connection: {
+    client: 'pg',
+    connection: Env.get('DATABASE_URL', {
       host: Env.get('DB_HOST', 'localhost'),
-      user: Env.get('DB_USER', 'root'),
+      user: Env.get('DB_USER', 'embergrep_testing'),
       password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis'),
-    },
+      database: Env.get('DB_DATABASE', 'embergrep_testing'),
+    }),
   },
 
   /*
