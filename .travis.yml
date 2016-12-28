@@ -15,7 +15,7 @@ env:
   global:
     - DB_HOST=127.0.0.1
     - DB_DATABASE=travis_ci_test
-    - DB_USERNAME=postgres
+    - DB_USER=postgres
 
 cache:
   yarn: true
